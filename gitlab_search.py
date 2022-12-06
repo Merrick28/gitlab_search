@@ -105,7 +105,7 @@ if __name__ == '__main__':
             for branch in branches:
                 search_results = get_search(project['id'], branch['name'])
                 for my_result in search_results:
-                    print("Found in project " + project['name'] + ", branch " + branch['name'] + " in file " + my_result["basename"])
+                    print("Found in project " + project['name'] + ", branch " + branch['name'] + " in file " + my_result["filename"])
                 time.sleep(sleep_time)
     print(' -- Over --')
 
