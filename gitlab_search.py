@@ -76,6 +76,14 @@ def get_projects(mygroup):
     return launch_request(api_url + 'groups/' + str(mygroup) + '/projects')
 
 
+def get_projects_without_group():
+    """
+    List projects when no group
+    :return: projects dict
+    """
+    return launch_request(api_url + 'projects')
+
+
 def get_branches(myproject):
     """
     List branches for a project
@@ -97,12 +105,22 @@ def get_search(myproject, mybranch):
 
 if __name__ == '__main__':
     prepare_vars()
-    for group in get_groups():
-        for project in get_projects(group['id']):
+    groups = get_groups()
+    if len(groups) != 0:
+        for group in get_groups():
+            for project in get_projects(group['id']):
+                for branch in get_branches(project['id']):
+                    for my_result in get_search(project['id'], branch['name']):
+                        print("Found in project " + project['name'] + ", branch " + branch['name'] + " in file " + my_result["filename"])
+                    time.sleep(sleep_time)
+    else:
+        for project in get_projects_without_group():
             for branch in get_branches(project['id']):
                 for my_result in get_search(project['id'], branch['name']):
                     print("Found in project " + project['name'] + ", branch " + branch['name'] + " in file " + my_result["filename"])
                 time.sleep(sleep_time)
+
+
     print(' -- Over --')
 
 
