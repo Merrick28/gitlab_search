@@ -97,14 +97,10 @@ def get_search(myproject, mybranch):
 
 if __name__ == '__main__':
     prepare_vars()
-    groups = get_groups()
-    for group in groups:
-        projects = get_projects(group['id'])
-        for project in projects:
-            branches = get_branches(project['id'])
-            for branch in branches:
-                search_results = get_search(project['id'], branch['name'])
-                for my_result in search_results:
+    for group in get_groups():
+        for project in get_projects(group['id']):
+            for branch in get_branches(project['id']):
+                for my_result in get_search(project['id'], branch['name']):
                     print("Found in project " + project['name'] + ", branch " + branch['name'] + " in file " + my_result["filename"])
                 time.sleep(sleep_time)
     print(' -- Over --')
