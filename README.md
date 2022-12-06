@@ -4,7 +4,8 @@ Simple script to allow a full text search on all your repositories/branches
 
 ## Usage
 
-First, you have to [create a personal GitLab access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token) with the read_api 
+First, you have to [create a personal GitLab access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token) with the read_api.
+To search the word "needle" :
 
 ```
 pyhton3 gitlab_search.py --gitlab_token xxxxxxx --search_string needle
@@ -18,5 +19,8 @@ You can also use specific options :
 * --gitlab_api_url : if you use a self hosted or entreprise gitlab (not gitlab.com)
 
 ```
-pyhton3 gitlab_search.py --gitlab_token xxxxxxx --search_string needle --request_sleep 0.25 --gitlab_api_url https://gitlab.mycomany.com/api/v4
+pyhton3 gitlab_search.py --gitlab_token xxxxxxx \
+    --search_string needle \
+    --request_sleep 0.25 \
+    --gitlab_api_url https://gitlab.mycomany.com/api/v4
 ```
